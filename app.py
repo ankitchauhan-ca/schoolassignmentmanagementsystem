@@ -216,7 +216,7 @@ def grade_assignment(assignment_id):
         grade = request.form["grade"]
         assignment.grade = grade
         db.session.commit()
-        return redirect(url_for("teacher_assignments"))
+        return redirect(url_for("dashboard"))
     return render_template("grade_assignment.html", assignment=assignment)
 
 @app.route("/re_grade_assignment/<int:assignment_id>", methods=["GET", "POST"])
