@@ -1,0 +1,70 @@
+{% extends "index.html" %}
+
+{% block title %}Home - School Assignment Management System{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h1 class="bg-primary text-white p-3 rounded">Welcome, {{ current_user.username }}!</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h2 class="mb-0">Teachers</h2>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for teacher in teachers %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{ teacher.username }}</span>
+                        <span class="badge bg-secondary">{{ teacher.email }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h2 class="mb-0">Assignments</h2>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for assignment in assignments %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1">{{ assignment.title }}</h5>
+                                <p class="mb-1">Student: {{ assignment.student.name }}</p>
+                                <small>Teacher: {{ assignment.teacher.username }}</small>
+                                {% if assignment.file_path %}
+                                <br>
+                                <a href="{{ url_for('download_file', filename=assignment.file_path.split('/')[-1]) }}"
+                                    class="btn btn-sm btn-outline-secondary mt-2">
+                                    Download File
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="text-end">
+                                {% if assignment.grade %}
+                                <span class="badge bg-success mb-2">Grade: {{ assignment.grade }}</span>
+                                <br>
+                                <a href="{{ url_for('re_grade_assignment', assignment_id=assignment.id) }}"
+                                    class="btn btn-sm btn-primary">Re-grade</a>
+                                {% else %}
+                                <span class="badge bg-warning">Not graded yet</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

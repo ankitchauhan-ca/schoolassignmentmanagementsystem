@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Re-grade Assignment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Re-grade Assignment: {{ assignment.title }}</h1>
+
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="grade">Grade:</label>
+                <input type="number" class="form-control" id="grade" name="grade" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Grade</button>
+        </form>
+
+        <p class="mt-3">Current Grade: {{ assignment.grade }}</p>
+    </div>
+</body>
+
+</html>

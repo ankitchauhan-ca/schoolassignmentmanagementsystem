@@ -1,0 +1,104 @@
+{% extends "index.html" %}
+
+{% block title %}Student Dashboard - School Assignment Management System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-container {
+        background-color: #f8f9fa;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-title {
+        color: #007bff;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    .section-title {
+        color: #0d5cbc;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .list-group-item {
+        border-left: 5px solid #007bff;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .list-group-item:hover {
+        background-color: #e9ecef;
+        transform: translateX(5px);
+    }
+
+    .assignment-title {
+        font-weight: bold;
+        color: #343a40;
+    }
+
+    .teacher-name {
+        font-style: italic;
+    }
+
+    .btn-edit {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .btn-edit:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+    .btn-create {
+        margin-top: 30px;
+        padding: 10px 30px;
+        font-size: 1.1em;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container dashboard-container mt-5">
+    <h1 class="text-center dashboard-title">Welcome, {{ current_user.username }}!</h1>
+
+    <h2 class="section-title">Current Assignments</h2>
+    <ul class="list-group">
+        {% for assignment in assignments %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <span class="assignment-title">{{ assignment.title }}</span>
+                <small class="text-muted teacher-name">(Teacher: {{ assignment.teacher.username }})</small>
+            </div>
+            <div>
+                {% if assignment.submitted %}
+                <span class="badge bg-success p-2">Submitted</span>
+                {% else %}
+                <a href="{{ url_for('edit_assignment', assignment_id=assignment.id) }}"
+                    class="btn btn-edit btn-sm text-white">Edit</a>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="section-title">Draft Assignments</h2>
+    <ul class="list-group">
+        {% for draft_assignment in draft_assignments %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span class="assignment-title">{{ draft_assignment.title }}</span>
+            <a href="{{ url_for('edit_assignment', assignment_id=draft_assignment.id) }}"
+                class="btn btn-edit btn-sm text-white">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="text-center">
+        <a href="{{url_for('create_assignment')}}" class="btn btn-success btn-create">Create Assignment</a>
+    </div>
+</div>
+{% endblock %}

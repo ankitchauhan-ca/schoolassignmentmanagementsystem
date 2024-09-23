@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Assignment</title>
+    <style>
+        /* Add some basic styling to the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        /* Style the h1 heading */
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Style the form */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style the form labels */
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Style the form inputs */
+        input[type="text"],
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #337ab7;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style the submit button */
+        input[type="submit"] {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #23527c;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Edit Assignment</h1>
+    <form action="" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ assignment.title }}"><br><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{ assignment.description }}</textarea><br><br>
+        <input type="submit" value="Update">
+    </form>
+</body>
+
+</html>

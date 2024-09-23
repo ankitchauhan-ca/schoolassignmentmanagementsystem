@@ -1,0 +1,83 @@
+<h1 style=" text-align: center;">Grade Assignment: {{ assignment.title }}
+</h1>
+
+<form action="" method="post">
+    <label for="grade">Grade:</label>
+    <input type="number" id="grade" name="grade" required>
+    <button type="submit">Submit Grade</button>
+</form>
+
+<p>Current Grade: {{ assignment.grade }}</p>
+
+<style>
+    /* Add some basic styling to the page */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    /* Style the h1 heading */
+    h1 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    /* Style the form */
+    form {
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the form label and input */
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="number"]:focus {
+        border-color: #337ab7;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the submit button */
+    button[type="submit"] {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #23527c;
+    }
+
+    /* Style the current grade paragraph */
+    p {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #666;
+        text-align: center;
+    }
+
+    p::before {
+        content: "Current Grade: ";
+        font-weight: bold;
+        color: #333;
+    }
+</style>
